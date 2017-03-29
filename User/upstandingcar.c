@@ -149,6 +149,7 @@ void AngleControl(void)
 																							  
 	 
 }
+#define MAX_PWM 255
 /***************************************************************
 ** 函数名称: SetMotorVoltageAndDirection
 ** 功能描述: 电机转速             
@@ -188,13 +189,13 @@ void SetMotorVoltageAndDirection(s16 s16LeftVoltage,s16 s16RightVoltage)
 	 u16RightMotorValue= (u16)s16RightVoltage;
 	 u16LeftMotorValue = (u16)s16LeftVoltage;
 
-	if(u16RightMotorValue>255)  							   //设定左右电机PWM最大输出幅度为255
+	if(u16RightMotorValue>MAX_PWM)  							   //设定左右电机PWM最大输出幅度为255
 	{
-		u16RightMotorValue=255;
+		u16RightMotorValue=MAX_PWM;
 	}
-	if(u16LeftMotorValue>255)									//设定左右电机PWM最大输出幅度为255
+	if(u16LeftMotorValue>MAX_PWM)									//设定左右电机PWM最大输出幅度为255
 	{
-	   u16LeftMotorValue=255;
+	   u16LeftMotorValue=MAX_PWM;
 	}
     //TIM2_PWM_CHANGE(u16RighttMotorValue,u16LeftMotorValue) ;
 	//TIM2->CCR3 = 	u16RightMotorValue ; 
@@ -334,8 +335,8 @@ void BluetoothControl(void)	 								 //蓝牙控制
 		
 	switch (u8BluetoothValue)
 	{
-	  case 0x01 : BST_fBluetoothSpeed =   210 ; break;	   //向前速度 250 
-	  case 0x02 : BST_fBluetoothSpeed = (-200);  break;	   //后退速度 -250
+	  case 0x01 : BST_fBluetoothSpeed =   100 ; break;	   //向前速度 250 
+	  case 0x02 : BST_fBluetoothSpeed = (-90);  break;	   //后退速度 -250
 	  case 0x04 : BST_fBluetoothDirectionSL = 1; break;//左转
 	  case 0x03 : BST_fBluetoothDirectionSR = 1; break;//右转
 	  case 0x05 : BST_fBluetoothDirectionL = 1; break ;//左旋
@@ -355,7 +356,7 @@ void DirectionControl(void)											  //转向函数
 
 
 static float temp ,turnconvert,speedtarget,temp2;
-static  int turncount,speedlimit=100;
+static  int turncount,speedlimit=80;
 
 	BST_fBluetoothDirectionNew=BST_fBluetoothDirectionOld ;
 
