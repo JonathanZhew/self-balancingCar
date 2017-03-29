@@ -1,0 +1,1 @@
+-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I.\CMSIS -I.\FWlib\inc -I.\FWlib\src -I.\User -I.\MPU6050 -I "D:\Èí¼þ\Keil uvision4\keil\ARM\INC" -I "D:\Èí¼þ\Keil uvision4\keil\ARM\INC\ST\STM32F10x" -DUSE_STDPERIPH_DRIVER -DSTM32F10X_MD -o "timer.o" --omf_browse "timer.crf" --depend "timer.d" "User\timer.c"
